@@ -1,0 +1,33 @@
+---
+# 基础样式（基于 LLVM 风格，但修改缩进）
+BasedOnStyle: LLVM
+
+# 缩进设置
+IndentWidth: 4              # 每级缩进4个空格
+TabWidth: 4                 # 制表符等于4个空格
+UseTab: Never               # 不使用制表符，只用空格
+
+# 大括号风格
+BreakBeforeBraces: Attach   # 大括号跟随语句（K&R/Java风格）可换成Allman
+AllowShortBlocksOnASingleLine: false
+AllowShortFunctionsOnASingleLine: None
+
+# 行长度
+ColumnLimit: 80             # 行宽限制
+MaxEmptyLinesToKeep: 1      # 最大连续空行数
+
+# 空格设置
+SpacesBeforeTrailingComments: 1  # 行尾注释前的空格数
+FixNamespaceComments: true       # 修复命名空间注释
+SpaceBeforeParens: ControlStatements  # 控制语句括号前加空格
+
+# 指针和引用对齐
+PointerAlignment: Left      # 指针符号靠左
+ReferenceAlignment: Left    # 引用符号靠左
+
+# 其他实用选项
+AlignConsecutiveMacros: true      # 对齐连续宏定义
+AlignConsecutiveDeclarations: true # 对齐连续变量声明
+AlignTrailingComments: true       # 对齐行尾注释
+SortIncludes: true                # 排序#include
+IncludeBlocks: Regroup           # 重新分组#include
