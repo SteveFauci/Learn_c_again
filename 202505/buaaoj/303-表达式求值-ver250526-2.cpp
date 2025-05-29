@@ -16,6 +16,7 @@ VERSION2-能算基本的加减乘除幂，支持括号和浮点数以及负数
 #include <iostream>
 #include <stack>
 using namespace std;
+// clang-format off
 double calc(double num1, double num2, char oper) {
     switch (oper) {
     case '+': return num1 + num2;
@@ -35,6 +36,7 @@ int prec(char op) {
     default: return 0;
     }
 }
+// clang-format on
 void calculate(stack<char>& op, stack<double>& num) {
     double num2 = num.top(); // 后入栈的作为被减(除)数
     num.pop();
@@ -123,6 +125,7 @@ int main() {
     }
     cout << num.top() << endl;
     // num.pop();
+    // clang-format off
     while(!num.empty())num.pop();
     while(!op.empty())op.pop();
 }
