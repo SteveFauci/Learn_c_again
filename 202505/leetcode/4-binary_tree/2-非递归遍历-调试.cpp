@@ -2,35 +2,30 @@
 #include <stack>
 #include <vector>
 using namespace std;
-
+// clang-format off
 struct TreeNode {
     int       val;
     TreeNode* left;
     TreeNode* right;
-    TreeNode() : val(0), left(nullptr), right(nullptr) {
-    }
-    TreeNode(int x) : val(x), left(nullptr), right(nullptr) {
-    }
+    TreeNode() : val(0), left(nullptr), right(nullptr) {}
+    TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
     TreeNode(int x, TreeNode* left, TreeNode* right)
-        : val(x), left(left), right(right) {
+    : val(x), left(left), right(right) {
     }
 };
+// clang-format off
 
 // 前序遍历
 void preorder(TreeNode* node, vector<int>& ans) {
     if (!node) return;  // 空树直接返回
-    
     stack<TreeNode*> a_stack;  // 存储指针
     a_stack.push(node);
-    
     while (!a_stack.empty()) {
         TreeNode* temp = a_stack.top();
-        a_stack.pop();  // 必须弹出已访问的节点
+        a_stack.pop();  // 访问过了就没有利用价值了，扔掉
         ans.push_back(temp->val);
-        
-        // 先右后左，保证左子先访问
         if (temp->right) a_stack.push(temp->right);
-        if (temp->left) a_stack.push(temp->left);
+        if (temp->left) a_stack.push(temp->left);   //左子后入栈 先访问
     }
 }
 
