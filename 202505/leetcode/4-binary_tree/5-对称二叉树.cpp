@@ -1,7 +1,3 @@
-//没做出来
-#include<vector>
-#include<stack>
-using namespace std;
 struct TreeNode {
     int val;
     TreeNode *left;
@@ -14,6 +10,16 @@ class Solution {
 public:
     bool isSymmetric(TreeNode* root) {
         if(!root)return false;
-        if(root->left || !root->right)
+        else if(!root->left && !root->right) return true;
+        else if(!root->left || !root->right) return false;
+        else{
+            return recursive(root->left,root->right);
+        }
+    }
+    bool recursive(TreeNode*left,TreeNode*right){
+        if(!left&&!right)return true;
+        else if(!left||!right)return false;
+        else if(left->val == right->val && left && right)return recursive(left->left, right->right)&&recursive(left->right, right->left);
+        else return false;
     }
 };
