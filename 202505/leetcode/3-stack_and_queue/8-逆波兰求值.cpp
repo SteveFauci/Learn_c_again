@@ -1,3 +1,5 @@
+// 一遍过
+// clang-format off
 #include <stack>
 #include <string>
 #include <vector>
@@ -7,7 +9,6 @@ class Solution {
   public:
     int evalRPN(vector<string>& tokens) {
         stack<int> nums;
-
         auto size = tokens.size();
         for (int i = 0; i < size; i++) {
             if (tokens[i].size() == 1 && isOperator(tokens[i][0])) {
@@ -22,7 +23,6 @@ class Solution {
         }
         return nums.top();
     }
-
   private:
     bool isOperator(char ch) {
         if (ch == '+' || ch == '-' || ch == '*' || ch == '/')
