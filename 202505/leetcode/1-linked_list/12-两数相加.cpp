@@ -42,7 +42,7 @@ class Solution {
                 ptr->next = new ListNode(sum % 10, nullptr);
                 cache = sum/10;
             }
-            ptr2 = ptr1->next;
+            ptr2 = ptr2->next;
             ptr = ptr->next;
         }
         if(cache){
