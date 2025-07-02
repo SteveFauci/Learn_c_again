@@ -1,5 +1,14 @@
 # BUAA_OJ 各种坑
 
+## 输入样例 & 输出样例 调试步骤
+
+解决的问题：按一下回车得到一次输出，难以比对答案。
+
+1. 按`f5`编译(其实是调试，然后还要按`shift+f5`)，得到文件`main`
+2. 创建`in.txt`文件，粘贴输入样例并保存
+3. 终端输入 `./main < in.txt > out.txt`（用相对路径）
+4. 直接比对`out.txt`和输出样例
+
 ## EOF
 
 windows端的EOF是`Ctrl+Z Enter`，linux端的是`Ctrl + D`
@@ -28,11 +37,49 @@ gets(str);
 ```
 
 替代方案(最安全)：
+> 注意一下，`fgets`的第二个参数`Maxsize`开小了也会`RuntimeError(SIGSEGV)`，解决方案就是防御性编程，遇到字符串直接开`buffer[10005]`而不是`buffer[10001]`，所谓“不差这么几个字节的内存”。
 
 ```c
 char str[Maxsize];
 fgets(str,Maxsize,stdin);
 str[strcspn(str, "\n")] = '\0';
+```
+
+## 字符串的动态内存分配
+
+例题：读取并存储`10,000`个字符串，每个长度不超过`1,000`。但总字符数不超过`200,000`(即200KB内存)
+
+常见解法：
+
+```c
+char strings[10005][1005];
+// 一个字符串就是1KB
+// 占了10,000KB的内存，即10MB，编译不通过
+for (int i = 0; i < 10000; i++) {
+    gets(string[i]);
+}
+```
+
+动态分配：
+
+```c
+char  buffer[1005];
+char* ptr[10005]; //所谓的 指针数组
+
+for (int i = 0; i < 10000; i++) {
+    fgets(buffer, 1005, stdin);
+    buffer[strcspn(buffer, "\n")] = '\0';
+    //前面两行只是读取，在buaaoj上可以用gets代替
+    ptr[i] = (char*)malloc(sizeof(char) * (strlen(buffer) + 1));
+    //用多少拿多少
+    strcpy(ptr[i], buffer);
+}
+
+// ......
+
+for (int i = 0; i < 10000; i++) {
+    free(ptr[i]); //有借有还
+}
 ```
 
 ## float比较
@@ -90,6 +137,52 @@ int cmp(const void*p1,const void*p2){
 
 一般都是`if(pp1->a < pp2->a) return -1;`
 （如果是浮点数比较，自己根据规则改一下）
+
+## 排序后去重输出
+
+例题：对已经排好序的数组，去除重复元素并输出。
+
+如 `arr[] = {1,1,2,2,2,3,3,4,5};`
+
+输出`1 2 3 4 5`
+
+解法1：常规
+
+```c
+// 先特判开头，然后把不同的全打印出来。
+#include <stdio.h>
+int arr[] = {1, 1, 2, 2, 2, 3, 3, 4, 5};
+int main() {
+    int n = sizeof(arr) / sizeof(arr[0]);
+    printf("%d", arr[0]);
+    for (int i = 1; i < n; i++) {
+        if (arr[i] != arr[i - 1]) {
+            printf(" %d", arr[i]);
+        }
+    }
+    puts("");
+}
+```
+
+解法2：双指针
+
+```c
+// 代码中的left right双指针，永远打印left，left随着right移动。
+// 特判最后一个
+#include <stdio.h>
+int arr[] = {1,1,2,2,2,3,3,4,5};
+int main() {
+    int left = 0;
+    int n = sizeof(arr) / sizeof(arr[0]);
+    for (int right = 0; right < n; right++) {
+        if (arr[left] != arr[right]) {
+            printf("%d ", arr[left]);
+            left = right;
+        }
+    }
+    printf("%d\n", arr[n - 1]);
+}
+```
 
 ## 常见WA
 

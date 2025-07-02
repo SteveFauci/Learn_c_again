@@ -2,7 +2,17 @@
     "cSpell.words": [
         "Allman",
         "BUAA",
+        "buaaoj",
+        "fabs",
         "fauci",
-        "Kadane"
+        "fgets",
+        "getchar",
+        "Kadane",
+        "malloc",
+        "qsort",
+        "scanf",
+        "SIGSEGV",
+        "strcpy",
+        "strcspn"
     ]
 }

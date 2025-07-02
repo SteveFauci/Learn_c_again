@@ -1,0 +1,12 @@
+v: 0 0 
+v: 0 1 0 
+v: 2 0 1 0 
+v: 2 0 1 0 3 
+You can't do that!
+v: 2 0 1 0 
+v: 2 0 1 0 5 
+v: 2 0 1 5 
+You can't do that!
+v: 0 1 2 5 
+v: 
+You can't do that!
