@@ -1,0 +1,46 @@
+// 注意到把bfs的queue全换成stack就是dfs了。。形式居然完全一样。。一会去试一下二叉树。。
+#include<vector>
+#include<stack>
+using namespace std;
+
+class Solution {
+public:
+    int dx[4] = {0, 1, 0, -1};
+    int dy[4] = {1, 0, -1, 0};
+    struct SNode{
+        int x,y;
+        SNode(int x1,int y1):x(x1),y(y1){};
+    };
+    int numIslands(vector<vector<char>>& grid) {
+        int ans = 0;
+        for(int i = 0; i < grid.size();i++){
+            for(int j = 0; j < grid[0].size();j++){
+                if(grid[i][j]=='1'){
+                    ans++;
+                    dfs(grid,i,j);
+                }
+            }
+        }
+        return ans;
+    }
+    void dfs(vector<vector<char>>& grid, int x, int y) {
+        grid[x][y] = '0';
+        stack<SNode> my_stack;
+        my_stack.push(SNode(x,y));
+        while(!my_stack.empty()){
+            SNode temp = my_stack.top();
+            my_stack.pop();
+            for (int i = 0; i < 4; i++) {
+                int x2 = temp.x + dx[i];
+                int y2 = temp.y + dy[i];
+                if(x2<0 || x2>=grid.size() || y2<0 || y2>=grid[0].size()){
+                    continue;
+                }if(grid[x2][y2]=='0'){
+                    continue;
+                }
+                grid[x2][y2] = '0';
+                my_stack.push(SNode(x2,y2));
+            }
+        }
+    }
+};

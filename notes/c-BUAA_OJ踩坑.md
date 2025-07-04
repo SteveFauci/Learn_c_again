@@ -45,6 +45,23 @@ fgets(str,Maxsize,stdin);
 str[strcspn(str, "\n")] = '\0';
 ```
 
+嫌麻烦就封装起来，打比赛直接复制。注意一下还是避免重名，这里用`my_gets()`，万一`get()`编译通过了，纯c又不存在函数重载。
+
+```c
+#include<string.h>
+#include<stdio.h>
+void my_gets(char*s,int limit){
+    fgets(s,limit,stdin);
+    s[strcspn(s,"\n")] = '\0';
+}
+
+int main(){
+    char str[100];
+    my_gets(str,100);
+    puts(str);
+}
+```
+
 ## 字符串的动态内存分配
 
 例题：读取并存储`10,000`个字符串，每个长度不超过`1,000`。但总字符数不超过`200,000`(即200KB内存)
