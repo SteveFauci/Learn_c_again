@@ -35,11 +35,12 @@ Markdown 格式的做题笔记，包括 BUAAOJ 平台上容易踩的坑。
 
 👉 [🔗查看笔记](notes/c-BUAA_OJ踩坑.md)
 
+👉 [🔗上机考试宝典](notes/c-BUAA_OJ上机考试开卷考试笔记.md)
+
 ### playground  
 
 测试 C 语言性质的娱乐代码。例如计算机存储的大小端、union 读取垃圾值。
 
-### in.txt / main / out.txt  
+还有一个迷宫寻路算法的**动画demo**（使用说明见注释，linux环境）：
 
-刷题（洛谷 / BUAAOJ）时使用的输入样例、程序、输出样例。  
-使用方法：编译出main文件后，终端输入 `./main < in.txt > out.txt`
+👉 [🔗查看动画演示-源代码](playground/4-迷宫寻路-动画demo.cpp)

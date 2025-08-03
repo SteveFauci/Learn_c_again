@@ -13,6 +13,7 @@
         "scanf",
         "SIGSEGV",
         "strcpy",
-        "strcspn"
+        "strcspn",
+        "vect"
     ]
 }
